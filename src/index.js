@@ -17,6 +17,7 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { LandingPage } from './components/pages/Landing';
+import { LoginPage } from './components/pages/Login';
 
 ReactDOM.render(
   <Router>
@@ -41,9 +42,9 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Switch>
-        <Route path="/" component={LandingPage} />
-        {/* <Route path="/login" component={LoginPage} /> */}
-        <Route path="/implicit/callback" component={LoginCallback} />
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
