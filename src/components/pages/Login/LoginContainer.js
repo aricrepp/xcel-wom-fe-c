@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
-
 import { config } from '../../../utils/oktaConfig';
+import Navbar from '../../common/NavbarSimple';
 
 const LoginContainer = () => {
   useEffect(() => {
@@ -32,7 +32,7 @@ const LoginContainer = () => {
         scopes,
       },
     });
-
+    widget.remove();
     widget.renderEl(
       { el: '#sign-in-widget' },
       () => {
@@ -47,7 +47,12 @@ const LoginContainer = () => {
     );
   }, []);
 
-  return <div id="sign-in-widget" />;
+  return (
+    <>
+      <Navbar />
+      <div id="sign-in-widget"></div>;
+    </>
+  );
 };
 
 export default LoginContainer;

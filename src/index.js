@@ -42,9 +42,10 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/implicit/callback" component={LoginCallback} />
+        <Route exact path="/landing" component={LandingPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/implicit/callback" component={LoginCallback} />
+
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
@@ -54,7 +55,6 @@ function App() {
         <SecureRoute path="/example-list" component={ExampleListPage} />
 
         <SecureRoute path="/profile-list" component={ProfileListPage} />
-
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

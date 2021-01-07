@@ -6,7 +6,8 @@ function LandingBodyPage() {
       <div style={box}>
         <h3 style={h3Style}>Excutive apartment</h3>
         <div style={h3Under}></div>
-        <Image
+        <img
+          alt="XCEL WORK ORDER"
           width={300}
           src="https://clintwoodapartments.com/wp-content/uploads/home-image.jpg"
         />
