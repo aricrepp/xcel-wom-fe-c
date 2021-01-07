@@ -40,23 +40,25 @@ function App() {
   };
 
   return (
-    <Security {...config} onAuthRequired={authHandler}>
-      <Switch>
-        <Route exact path="/landing" component={LandingPage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/implicit/callback" component={LoginCallback} />
+    <Router>
+      <Security {...config} onAuthRequired={authHandler}>
+        <Switch>
+          <Route exact path="/landing" component={LandingPage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/implicit/callback" component={LoginCallback} />
 
-        {/* any of the routes you need secured should be registered as SecureRoutes */}
-        <SecureRoute
-          path="/"
-          exact
-          component={() => <HomePage LoadingComponent={LoadingComponent} />}
-        />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
+          {/* any of the routes you need secured should be registered as SecureRoutes */}
+          <SecureRoute
+            path="/"
+            exact
+            component={() => <HomePage LoadingComponent={LoadingComponent} />}
+          />
+          <SecureRoute path="/example-list" component={ExampleListPage} />
 
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </Security>
+          <SecureRoute path="/profile-list" component={ProfileListPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Security>
+    </Router>
   );
 }

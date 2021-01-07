@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'antd';
+
 function LandingBodyPage() {
   return (
     <section style={landingBodyPage}>
