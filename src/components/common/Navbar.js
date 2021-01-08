@@ -1,11 +1,17 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import xcel from '../assets/xcel.png';
 import { Layout } from 'antd';
 const { Header } = Layout;
 
 function Navbar() {
+  const history = useHistory();
+
+  const handlePush = () => {
+    history.push('/login');
+  };
+
   return (
     <Header style={headerStyle}>
       <div style={logo}>
@@ -27,10 +33,8 @@ function Navbar() {
         <Menu.Item style={itemStyle} key="3">
           Contact Us
         </Menu.Item>
-        <Menu.Item style={itemStyle} key="4">
-          <Link to="/login" style={itemStyle}>
-            Login
-          </Link>
+        <Menu.Item style={itemStyle} key="4" onClick={handlePush}>
+          Login
         </Menu.Item>
       </Menu>
     </Header>
