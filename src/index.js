@@ -40,8 +40,8 @@ function App() {
   };
 
   return (
-    <Router>
-      <Security {...config} onAuthRequired={authHandler}>
+    <Security {...config} onAuthRequired={authHandler}>
+      <Router>
         <Switch>
           <Route exact path="/landing" component={LandingPage} />
           <Route path="/login" component={LoginPage} />
@@ -58,7 +58,7 @@ function App() {
           <SecureRoute path="/profile-list" component={ProfileListPage} />
           <Route component={NotFoundPage} />
         </Switch>
-      </Security>
-    </Router>
+      </Router>
+    </Security>
   );
 }
