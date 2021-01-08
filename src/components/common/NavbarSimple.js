@@ -1,11 +1,17 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import xcel from '../assets/xcel.png';
 import { Layout } from 'antd';
 const { Header } = Layout;
 
 function Navbar() {
+  const history = useHistory();
+
+  const handlePush = () => {
+    history.push('/landing');
+  };
+
   return (
     <Header style={headerStyle}>
       <div style={logo}>
@@ -18,10 +24,8 @@ function Navbar() {
         mode="horizontal"
         defaultSelectedKeys={['1']}
       >
-        <Menu.Item style={itemStyle} key="4">
-          <Link to="/landing" style={itemStyle}>
-            Home
-          </Link>
+        <Menu.Item style={itemStyle} key="4" onClick={handlePush}>
+          Login
         </Menu.Item>
       </Menu>
     </Header>
