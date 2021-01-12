@@ -1,20 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Image } from 'antd';
 
 function RenderLandingPage(props) {
   return (
-    <div>
-      <h1>Welcome to Labs Basic SPA</h1>
-      <div>
-        <p>
-          This is an example of how we'd like for you to approach page/routable
-          components.
-        </p>
-        <p>
-          <Link to="/example-list">Example List of Items</Link>
-        </p>
+    <section style={welcomeContainer}>
+      <div style={welcomePicture}>
+        <Image
+          alt="Xcel Work Order"
+          preview={false}
+          src="https://img.wallpapersafari.com/desktop/1920/1080/62/79/bYdv3O.jpg"
+        />
       </div>
-    </div>
+    </section>
   );
 }
+
+let welcomeContainer = {
+  position: 'relative',
+};
+
+let welcomePicture = {
+  width: '100%',
+  height: 'auto',
+};
+
 export default RenderLandingPage;

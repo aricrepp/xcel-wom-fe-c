@@ -15,6 +15,7 @@ const handleFetchItems = () =>
       thumbnailUrl:
         'https://tk-assets.lambdaschool.com/8a7d77c1-50ee-4350-9840-d2437bbfcaea_KaU4DC_DG.jpg',
       title: 'I Doggo',
+      alt: 'placeholder',
     },
   ]);
 
