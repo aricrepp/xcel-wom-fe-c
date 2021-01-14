@@ -19,12 +19,23 @@ import { LoadingComponent } from './components/common';
 import { LandingPage } from './components/pages/Landing';
 import { LoginPage } from './components/pages/Login';
 
+//Redux imports
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+
+import rootReducer from './state/reducers';
+
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 ReactDOM.render(
-  <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 
