@@ -3,10 +3,12 @@
 
 import { combineReducers } from 'redux';
 import loginReducer from './loginReducer';
+import workorderReducer from './workorderReducer';
 
 //will be updated with each reducer we make
 const rootReducer = combineReducers({
   loginReducer,
+  workorderReducer,
 });
 
 export default rootReducer;
