@@ -9,11 +9,9 @@ import {
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
-
 import { NotFoundPage } from './components/pages/NotFound';
-import { ExampleListPage } from './components/pages/ExampleList';
-import { HomePage } from './components/pages/Home';
-import { ProfileListPage } from './components/pages/ProfileList';
+import { WorkOrder } from './components/pages/WorkOrder';
+import { Dashboard } from './components/pages/Dashboard';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { LandingPage } from './components/pages/Landing';
@@ -54,19 +52,22 @@ function App() {
     <Security {...config} onAuthRequired={authHandler}>
       <Router>
         <Switch>
-          <Route exact path="/landing" render={() => <LandingPage />} />
+          <Route exact path="/" render={() => <LandingPage />} />
           <Route path="/login" render={() => <LoginPage />} />
           <Route path="/implicit/callback" render={() => <LoginCallback />} />
 
           {/* any of the routes you need secured should be registered as SecureRoutes */}
           <SecureRoute
-            path="/"
+            path="/dashboard"
             exact
-            component={() => <HomePage LoadingComponent={LoadingComponent} />}
+            component={() => <Dashboard LoadingComponent={LoadingComponent} />}
           />
-          <SecureRoute path="/example-list" component={ExampleListPage} />
+          <SecureRoute
+            path="/dashboard/workOrder"
+            exact
+            component={() => <WorkOrder LoadingComponent={LoadingComponent} />}
+          />
 
-          <SecureRoute path="/profile-list" component={ProfileListPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Router>

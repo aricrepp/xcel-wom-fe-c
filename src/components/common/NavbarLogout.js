@@ -5,17 +5,18 @@ import xcel from '../assets/xcel.png';
 import { Layout } from 'antd';
 const { Header } = Layout;
 
-function Navbar() {
+function NavbarLogout() {
   const history = useHistory();
 
   const handlePush = () => {
-    history.push('/landing');
+    localStorage.clear();
+    history.push('/');
   };
 
   return (
     <Header style={headerStyle}>
       <div style={logo}>
-        <img alt="Xcel WO" width="150px" src={xcel} />
+        <img alt="Xcel WO" height="100px" src={xcel} />
       </div>
       <Menu
         style={menuStyle}
@@ -25,7 +26,7 @@ function Navbar() {
         defaultSelectedKeys={['1']}
       >
         <Menu.Item style={itemStyle} key="4" onClick={handlePush}>
-          Login
+          Logout
         </Menu.Item>
       </Menu>
     </Header>
@@ -37,8 +38,8 @@ let headerStyle = {
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: '15px 0',
-  background: '#333',
-  height: '150px',
+  background: 'white',
+  height: '100px',
 };
 
 let logo = {
@@ -61,11 +62,12 @@ let itemStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '33.33%',
+  width: '18.33%',
   fontSize: '20px',
-  color: 'white',
+  color: '#333',
   fontWeight: '600',
   boxSizing: 'border-box',
+  right: '20px',
 };
 
-export default Navbar;
+export default NavbarLogout;

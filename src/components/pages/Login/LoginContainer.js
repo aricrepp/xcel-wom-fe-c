@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 import { config } from '../../../utils/oktaConfig';
-import Navbar from '../../common/NavbarSimple';
+import NavbarLogout from '../../common/NavbarLogout';
 
 const LoginContainer = () => {
   useEffect(() => {
@@ -49,7 +49,7 @@ const LoginContainer = () => {
 
   return (
     <>
-      <Navbar />
+      <NavbarLogout />
       <div id="sign-in-widget"></div>;
     </>
   );

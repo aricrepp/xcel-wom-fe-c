@@ -7,7 +7,7 @@ import { useOktaAuth } from '@okta/okta-react';
 
 const { Header } = Layout;
 
-function Navbar() {
+function NavbarDashboard() {
   const history = useHistory();
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
@@ -34,11 +34,12 @@ function Navbar() {
   }, [memoAuthService]);
 
   const handleLoginPush = () => {
-    history.push('/login');
+    localStorage.clear();
+    history.push('/');
   };
 
   const handleDashPush = () => {
-    history.push('/dashboard');
+    history.push('/dashboard/workOrder');
   };
 
   return (
@@ -53,24 +54,16 @@ function Navbar() {
         mode="horizontal"
         defaultSelectedKeys={['1']}
       >
-        <Menu.Item style={itemStyle} key="1">
-          Home
-        </Menu.Item>
-        <Menu.Item style={itemStyle} key="2">
-          About Us
-        </Menu.Item>
-        <Menu.Item style={itemStyle} key="3">
-          Contact Us
-        </Menu.Item>
         {authState.isAuthenticated && userInfo ? (
           <Menu.Item style={itemStyle} key="4" onClick={handleDashPush}>
-            Dashboard
+            Create WO
           </Menu.Item>
         ) : (
-          <Menu.Item style={itemStyle} key="4" onClick={handleLoginPush}>
-            Login
-          </Menu.Item>
+          <></>
         )}
+        <Menu.Item style={itemStyle} key="4" onClick={handleLoginPush}>
+          Logout
+        </Menu.Item>
       </Menu>
     </Header>
   );
@@ -83,7 +76,6 @@ let headerStyle = {
   padding: '15px 0',
   background: 'white',
   height: '100px',
-  zIndex: '99',
 };
 
 let logo = {
@@ -114,4 +106,4 @@ let itemStyle = {
   right: '20px',
 };
 
-export default Navbar;
+export default NavbarDashboard;

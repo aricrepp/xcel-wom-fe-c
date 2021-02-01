@@ -7,7 +7,7 @@ import AppFooter from './AppFooter';
 import Navbar from '../../common/Navbar';
 const { Footer } = Layout;
 
-function LandingContainer({ LoadingComponent }) {
+function LandingContainer() {
   return (
     <Layout style={mainLayout}>
       <Navbar />

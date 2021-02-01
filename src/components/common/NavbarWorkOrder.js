@@ -7,7 +7,7 @@ import { useOktaAuth } from '@okta/okta-react';
 
 const { Header } = Layout;
 
-function Navbar() {
+function NavbarWorkOrder(props) {
   const history = useHistory();
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
@@ -33,8 +33,8 @@ function Navbar() {
     return () => (isSubscribed = false);
   }, [memoAuthService]);
 
-  const handleLoginPush = () => {
-    history.push('/login');
+  const handleLogoutPush = () => {
+    authService.logout();
   };
 
   const handleDashPush = () => {
@@ -44,7 +44,7 @@ function Navbar() {
   return (
     <Header style={headerStyle}>
       <div style={logo}>
-        <img alt="Xcel WO" height="100px" src={xcel} />
+        <img alt="Xcel WO" height="80px" src={xcel} />
       </div>
       <Menu
         style={menuStyle}
@@ -53,24 +53,16 @@ function Navbar() {
         mode="horizontal"
         defaultSelectedKeys={['1']}
       >
-        <Menu.Item style={itemStyle} key="1">
-          Home
-        </Menu.Item>
-        <Menu.Item style={itemStyle} key="2">
-          About Us
-        </Menu.Item>
-        <Menu.Item style={itemStyle} key="3">
-          Contact Us
-        </Menu.Item>
         {authState.isAuthenticated && userInfo ? (
           <Menu.Item style={itemStyle} key="4" onClick={handleDashPush}>
             Dashboard
           </Menu.Item>
         ) : (
-          <Menu.Item style={itemStyle} key="4" onClick={handleLoginPush}>
-            Login
-          </Menu.Item>
+          <></>
         )}
+        <Menu.Item style={itemStyle} key="4" onClick={handleLogoutPush}>
+          Logout
+        </Menu.Item>
       </Menu>
     </Header>
   );
@@ -82,8 +74,7 @@ let headerStyle = {
   alignItems: 'center',
   padding: '15px 0',
   background: 'white',
-  height: '100px',
-  zIndex: '99',
+  height: '80px',
 };
 
 let logo = {
@@ -114,4 +105,4 @@ let itemStyle = {
   right: '20px',
 };
 
-export default Navbar;
+export default NavbarWorkOrder;

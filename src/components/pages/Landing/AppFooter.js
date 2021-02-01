@@ -38,6 +38,8 @@ let footerContainer = {
   justifyContent: 'space-between',
   alignItems: 'flex-start',
   margin: '2% 20%',
+  position: 'relative',
+  top: '-300px',
 };
 
 let box = {

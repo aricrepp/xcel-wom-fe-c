@@ -4,7 +4,9 @@ import List from './List';
 import LoadingComponent from './LoadingComponent';
 import Button from './Button';
 import Navbar from './Navbar';
-import NavbarSimple from './NavbarSimple';
+import NavbarLogout from './NavbarLogout';
+import NavbarDashboard from './NavbarDashboard';
+import NavbarWorkOrder from './NavbarWorkOrder';
 // notice we're building out a 'package' of reusables here and exporting them as an object of component properties.
 // to use this, simply `import {foo, bar, baz} from '<path-to-this-directory>/ReusableComponents';`
 export {
@@ -14,5 +16,7 @@ export {
   LoadingComponent,
   Button,
   Navbar,
-  NavbarSimple,
+  NavbarLogout,
+  NavbarDashboard,
+  NavbarWorkOrder,
 };
