@@ -1,9 +1,9 @@
 const WORKORDER_SUBMITTED = 'WORKORDER_SUBMITTED';
 const FORM_FAILED = 'FORM_FAILED';
 
-const workorderAction = formvalues => {
+const workorderAction = formValues => {
   return dispatch => {
-    dispatch({ type: WORKORDER_SUBMITTED, payload: formvalues });
+    dispatch({ type: WORKORDER_SUBMITTED, payload: formValues });
   };
 };
 
@@ -13,4 +13,4 @@ const workorderFailed = () => {
   };
 };
 
-export { workorderAction, workorderFailed };
+export default workorderAction;

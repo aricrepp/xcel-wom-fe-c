@@ -3,10 +3,13 @@ import NavbarWorkOrder from '../../common/NavbarWorkOrder';
 import { Layout } from 'antd';
 import Dropzone from 'react-dropzone';
 import '../../../styles/workorder.css';
+import workorderAction from '../../../state/actions/WorkorderAction';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-function RenderWorkOrder(props) {
+const RenderWorkOrder = props => {
   const { Content } = Layout;
-  //const history = useHistory();
+  const history = useHistory();
   const { userInfo, authService } = props;
 
   const [formValues, setFormValues] = useState({
@@ -31,8 +34,8 @@ function RenderWorkOrder(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    //props.workorderAction(formValues)
-    //history.push('/dashboard')
+    props.workorderAction(formValues);
+    history.push('/dashboard');
   };
   return (
     <Layout className="work-order-container">
@@ -107,5 +110,11 @@ function RenderWorkOrder(props) {
       </Content>
     </Layout>
   );
-}
-export default RenderWorkOrder;
+};
+
+const mapStateToProps = state => {
+  return {
+    formSubmitted: state.workorderReducer.formSubmitted,
+  };
+};
+export default connect(mapStateToProps, { workorderAction })(RenderWorkOrder);
