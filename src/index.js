@@ -9,21 +9,31 @@ import {
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
-
 import { NotFoundPage } from './components/pages/NotFound';
-import { ExampleListPage } from './components/pages/ExampleList';
-import { HomePage } from './components/pages/Home';
-import { ProfileListPage } from './components/pages/ProfileList';
-import { LoginPage } from './components/pages/Login';
+import { WorkOrder } from './components/pages/WorkOrder';
+import { Dashboard } from './components/pages/Dashboard';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { LandingPage } from './components/pages/Landing';
+import { LoginPage } from './components/pages/Login';
 
+//Redux imports
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+
+import rootReducer from './state/reducers';
+
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 ReactDOM.render(
-  <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 
@@ -39,23 +49,28 @@ function App() {
   };
 
   return (
-    
     <Security {...config} onAuthRequired={authHandler}>
-    <Switch>
-      <Route path="/login" component={LoginPage} />
-      <Route path="/implicit/callback" component={LoginCallback} />
-      {/* any of the routes you need secured should be registered as SecureRoutes */}
-      <SecureRoute
-        path="/"
-        exact
-        component={() => <HomePage LoadingComponent={LoadingComponent} />}
-      />
-      <SecureRoute path="/example-list" component={ExampleListPage} />
-      
-      <SecureRoute path="/profile-list" component={ProfileListPage} />
-      
-      <Route component={NotFoundPage} />
-    </Switch>
+      <Router>
+        <Switch>
+          <Route exact path="/" render={() => <LandingPage />} />
+          <Route path="/login" render={() => <LoginPage />} />
+          <Route path="/implicit/callback" render={() => <LoginCallback />} />
+
+          {/* any of the routes you need secured should be registered as SecureRoutes */}
+          <SecureRoute
+            path="/dashboard"
+            exact
+            component={() => <Dashboard LoadingComponent={LoadingComponent} />}
+          />
+          <SecureRoute
+            path="/dashboard/workOrder"
+            exact
+            component={() => <WorkOrder LoadingComponent={LoadingComponent} />}
+          />
+
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Router>
     </Security>
   );
 }
